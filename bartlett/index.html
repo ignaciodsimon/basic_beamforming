@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<header>
+		<title>
+			Bartlett beamforming algorithm simulation
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	</header>
+	<body>
+		<h1>Bartlett beamforming algorithm simulation</h1>
+		<p>
+			<img src="bartlett_demo.png"/>
+			<br/><br/>
+
+			Based on the Bartlett beamforming algorithm presented during the course Array and Sensor Signal Processing, a generalized version has been developed that considers spherical waves and arbitrary array geometries, which adds the following advantages:
+
+			<ul>
+				<li>the effect of close sources to the array can be simulated</li>
+				<li>the scan can now include distance and angle, as opposed to only angle</li>
+				<li>any array shape can be simulated, not only uniform linear</li>
+			</ul>
+		</p>
+
+		<h2>Generalising the Vandermonde vector</h2>
+		<p>
+		
+			<br/><br/>
+			<img src="basic_idea.jpg"/>
+			<br/>
+			Fig. 1: idea behind the redefinition of the Vandermonde vector for spherical waves and arbitrary disposition of sensors.
+			<br/><br/>
+		
+			Originally, the Vandermonde vector is defined as a vector of complex numbers, of unity length and a phase that increases in linear steps (since it considers plane waves and a uniform linear array). Instead, it has been redefined as:
+			
+			<br/><br/>
+			<img src="new_vandermonde.png"/>
+			<br/>
+			Eq. 1: re-definition of the Vandermonde vector for spherical waves and arbitrary array geometries.
+			<br/><br/>
+			Equation 1 shows how the weights are defined, from each source on located on P=(Px, Py) to each sensor on Mi=(Mix, Miy). Now, the parameter that changes is the vector given by P-M instead of the angle formed by the first element of the array and the source as in the "classical" construction. This allows to perform a sweep in all dimensions that the positioning system defines (two for the simulated cases).
+		</p>
+
+		<h2>Array geometries</h2>
+		<p>
+			The limitations of the uniform linear array are mainly related to the symmetry it shows around its main dimension and its lack of precision on the sides. These can be improved by using array geometries such as:
+			<ul>
+				<li>Non uniform linear array (improves response on sides, still symmetric)</li>
+				<li>Spiral array (very homogeneous response, non symmetric)</li>
+				<li>Horn array (reasonably homogenous, non symmetric)</li>
+			</ul>
+			These are already defined in the developed script, but any other geometry can be added.		
+		</p>
+
+		<h2>Simulation parameters</h2>
+		<p>
+			The developed simulation script takes a series of parameters that define the setup:
+			<ul>
+				<li>The sensors floor noise, specified in decibels relative to unity gain.</li>
+				<li>Source circumference radius.</li>
+				<li>Area to cover in simulation, as a range in X and Y, in metres.</li>
+				<li>Grid resolution, in metres.</li>
+				<li>Source signal length, in samples.</li>
+				<li>Sampling rate, in Hertz.</li>
+				<li>Position of the array, to create offset trajectories and see distance varying.</li>
+				<li>Range of angles to cover in simulation.</li>
+			</ul>
+			Additionally, the geometry of the array is defined. The three previously mentioned are already included in the script.
+			<br/><br/>
+			Once the script has been configured, it can be executed and when finished will produce a mat file with all beamformed data. This file can be plotted (animated) with an included function.
+		</p>
+
+		<h2>Developed scripts</h2>
+		<p>
+			The following programs have been developed in Matlab:
+			<ul>
+				<li><a href="bartlettBeamforming.m">bartlettBeamforming.m</a> to generate a map of power over a certain area with the given simulation setup.</li>
+				<li><a href="generateGIFfromBeamformedData.m">generateGIFfromBeamformedData.m</a> to display an animated plot of all beamformed data and generate a GIF image file.</li>
+			</ul>
+		</p>
+		
+		<h2>Results</h2>
+		<p>
+			The simulations have proved to offer very pleasing results, that clearly allow to distinguish not only the incoming angle but also the distance. As an example, a full circumference trajectory on a thirty elements horn array is displayed in figure 2.
+
+			<br/><br/>
+			<img src="bartlett_low_res.gif" loop=100 alt="Bartlett demo animation."/>
+			<br/>
+			Fig. 2: data obtained with the Bartlett beamforming using the generalized Vandermonde vector.
+			<br/><br/>
+		
+		</p>
+
+	</body>
+</html>

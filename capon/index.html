@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<header>
+		<title>
+			Capon beamforming algorithm simulation
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	</header>
+	<body>
+		<h1>Capon beamforming algorithm simulation</h1>
+		<p>
+			<img src="capon_animation.gif">
+			<br/><br/>
+
+			Using the same generalized Vandermonde vector as described in the <a href="../bartlett/">Bartlett beamformer</a>, the Capon beamformer is computed. The results follow the earlier ones obtained with the Bartlett beamformer, but wit a much sharper finding of the source location.
+		</p>
+
+		<h2>Results comparison</h2>
+		<p>
+			The results from the Bartlett and the Capon are compared as an example here:
+
+			<br/><br/>
+			<img src="capon_demo.png"/>
+			<br/>
+			Fig. 1: results from the Capon beamformer using a horn array.
+
+			<br/><br/>
+			<img src="bartlett_demo.png"/>
+			<br/>
+			Fig. 2: results from the Bartlett beamformer using a horn array.
+			<br/><br/>
+
+			It can be observed that the Capon beamformer does not have so many undesired "side lobes" as the Bartlett, thus offering a much "cleaner" result.
+			<br/><br/>
+			It is interesting to note, although, that the Capon beamformer shows a much higher "background level" as it gets closer to the array location. This has not been further studied, but it may impact the performance for close distances.
+		</p>
+		
+		<h2>Developed scripts</h2>
+		<p>
+			A single program that performs the beamforming: <a href="caponBeamforming.m">caponBeamforming.m</a>. It generates a mat file that can be plot using the same utility from the Bartlett beamforming.
+		</p>
+
+	</body>
+</html>
